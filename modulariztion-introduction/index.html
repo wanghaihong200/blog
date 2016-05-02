@@ -1,0 +1,699 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="模块化," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="现状伴随着移动互联的大潮，当今越来越多的网站已经从网页模式进化到了 Webapp 模式。它们运行在现代的高级浏览器里，使用 HTML5、 CSS3、 ES6 等更新的技术来开发丰富的功能，网页已经不仅仅是完成浏览的基本需求，并且webapp通常是一个单页面应用，每一个视图通过异步的方式加载，这导致页面初始化和使用过程中会加载越来越多的 JavaScript 代码，这给前端开发的流程和资源组织带来了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块化简介">
+<meta property="og:url" content="http://blog.micua.com/modulariztion-introduction/index.html">
+<meta property="og:site_name" content="斯通摇滚吧！">
+<meta property="og:description" content="现状伴随着移动互联的大潮，当今越来越多的网站已经从网页模式进化到了 Webapp 模式。它们运行在现代的高级浏览器里，使用 HTML5、 CSS3、 ES6 等更新的技术来开发丰富的功能，网页已经不仅仅是完成浏览的基本需求，并且webapp通常是一个单页面应用，每一个视图通过异步的方式加载，这导致页面初始化和使用过程中会加载越来越多的 JavaScript 代码，这给前端开发的流程和资源组织带来了">
+<meta property="og:updated_time" content="2016-05-02T08:28:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模块化简介">
+<meta name="twitter:description" content="现状伴随着移动互联的大潮，当今越来越多的网站已经从网页模式进化到了 Webapp 模式。它们运行在现代的高级浏览器里，使用 HTML5、 CSS3、 ES6 等更新的技术来开发丰富的功能，网页已经不仅仅是完成浏览的基本需求，并且webapp通常是一个单页面应用，每一个视图通过异步的方式加载，这导致页面初始化和使用过程中会加载越来越多的 JavaScript 代码，这给前端开发的流程和资源组织带来了">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 模块化简介 | 斯通摇滚吧！ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?87e13ef9217ab0f2c37aea890c7aec20";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">斯通摇滚吧！</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">汪磊的个人博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                模块化简介
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-02T16:21:59+08:00" content="2016-05-02">
+              2016-05-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/modulariztion-introduction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="modulariztion-introduction/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h1><p>伴随着移动互联的大潮，当今越来越多的网站已经从网页模式进化到了 Webapp 模式。它们运行在现代的高级浏览器里，使用 HTML5、 CSS3、 ES6 等更新的技术来开发丰富的功能，网页已经不仅仅是完成浏览的基本需求，并且webapp通常是一个单页面应用，每一个视图通过异步的方式加载，这导致页面初始化和使用过程中会加载越来越多的 JavaScript 代码，这给前端开发的流程和资源组织带来了巨大的挑战。</p>
+<p>前端开发的和其他开发工作的主要区别，首先是前端是基于多语言、多层次的编码和组织工作，其次前端产品的交付是基于浏览器，这些资源是通过增量加载的方式运行到浏览器端，如何在开发环境组织好这些碎片化的代码和资源，并且保证他们在浏览器端快速、优雅的加载和更新，就需要一个模块化系统，这个理想中的模块化系统是前端工程师多年来一直探索的难题。</p>
+<h1 id="模块系统的演进"><a href="#模块系统的演进" class="headerlink" title="模块系统的演进"></a>模块系统的演进</h1><p>模块系统主要解决模块的定义、依赖和导出，先来看看已经存在的模块系统。</p>
+<h3 id="lt-script-gt-标签"><a href="#lt-script-gt-标签" class="headerlink" title="&lt;script&gt;标签"></a>&lt;script&gt;标签</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">"module1.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"module2.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"libraryA.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script src=<span class="string">"module3.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>这是最原始的 JavaScript 文件加载方式，如果把每一个文件看做是一个模块，那么他们的接口通常是暴露在全局作用域下，也就是定义在 <code>window</code> 对象中，不同模块的接口调用都是一个作用域中，一些复杂的框架，会使用命名空间的概念来组织这些模块的接口，典型的例子如 <a href="http://yuilibrary.com" target="_blank" rel="external">YUI</a> 库。</p>
+<p>这种原始的加载方式暴露了一些显而易见的弊端：</p>
+<ul>
+<li>全局作用域下容易造成变量冲突</li>
+<li>文件只能按照 <code>&lt;script&gt;</code> 的书写顺序进行加载</li>
+<li>开发人员必须主观解决模块和代码库的依赖关系</li>
+<li>在大型项目中各种资源难以管理，长期积累的问题导致代码库混乱不堪</li>
+</ul>
+<h3 id="CommonJS"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h3><p>服务器端的 Node.js 遵循 <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS规范</a>，该规范的核心思想是允许模块通过 <code>require</code> 方法来同步加载所要依赖的其他模块，然后通过 <code>exports</code> 或 <code>module.exports</code> 来导出需要暴露的接口。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">"module"</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"../file.js"</span>);</span><br><span class="line">exports.doStuff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line"><span class="built_in">module</span>.exports = someValue;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>服务器端模块便于重用</li>
+<li><a href="https://www.npmjs.com" target="_blank" rel="external">NPM</a> 中已经有将近20万个可以使用模块包</li>
+<li>简单并容易使用</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>同步的模块加载方式不适合在浏览器环境中，同步意味着阻塞加载，浏览器资源是异步加载的</li>
+<li>不能非阻塞的并行加载多个模块</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li>服务器端的 <a href="http://www.nodejs.org" target="_blank" rel="external">Node.js</a></li>
+<li><a href="http://browserify.org" target="_blank" rel="external">Browserify</a>，浏览器端的 CommonJS 实现，可以使用 NPM 的模块，但是编译打包后的文件体积可能很大</li>
+<li><a href="https://github.com/medikoo/modules-webmake" target="_blank" rel="external">modules-webmake</a>，类似Browserify，还不如 Browserify 灵活</li>
+<li><a href="https://github.com/substack/wreq" target="_blank" rel="external">wreq</a>，Browserify 的前身</li>
+</ul>
+<h3 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h3><p><a href="https://github.com/amdjs/amdjs-api" target="_blank" rel="external">Asynchronous Module Definition</a> 规范其实只有一个主要接口 <code>define(id?, dependencies?, factory)</code>，它要在声明模块的时候指定所有的依赖 <code>dependencies</code>，并且还要当做形参传到 <code>factory</code> 中，对于依赖的模块提前执行，依赖前置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">"module"</span>, [<span class="string">"dep1"</span>, <span class="string">"dep2"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">d1, d2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> someExportedValue;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">require</span>([<span class="string">"module"</span>, <span class="string">"../file"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">module, file</span>) </span>&#123; <span class="comment">/* ... */</span> &#125;);</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>适合在浏览器环境中异步加载模块</li>
+<li>可以并行加载多个模块</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅</li>
+<li>不符合通用的模块化思维方式，是一种妥协的实现</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li><a href="http://requirejs.org" target="_blank" rel="external">RequireJS</a></li>
+<li><a href="https://github.com/cujojs/curl" target="_blank" rel="external">curl</a></li>
+</ul>
+<h3 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h3><p><a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="external">Common Module Definition</a> 规范和 AMD 很相似，尽量保持简单，并与 CommonJS 和 Node.js 的 Modules 规范保持了很大的兼容性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>);</span><br><span class="line">  <span class="keyword">var</span> Spinning = <span class="built_in">require</span>(<span class="string">'./spinning'</span>);</span><br><span class="line">  exports.doSomething = ...</span><br><span class="line">  module.exports = ...</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>依赖就近，延迟执行</li>
+<li>可以很容易在 Node.js 中运行</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>依赖 SPM 打包，模块的加载逻辑偏重</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li><a href="http://seajs.org/" target="_blank" rel="external">Sea.js</a></li>
+<li><a href="https://github.com/cloudcome/coolie" target="_blank" rel="external">coolie</a></li>
+</ul>
+<h3 id="UMD"><a href="#UMD" class="headerlink" title="UMD"></a>UMD</h3><p><a href="https://github.com/umdjs/umd" target="_blank" rel="external">Universal Module Definition</a> 规范类似于兼容 CommonJS 和 AMD 的语法糖，是模块定义的跨平台解决方案。</p>
+<h3 id="ES6-模块"><a href="#ES6-模块" class="headerlink" title="ES6 模块"></a>ES6 模块</h3><p>EcmaScript6 标准增加了 JavaScript 语言层面的模块体系定义。<a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="external">ES6 模块</a>的设计思想，是尽量的静态化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时确定这些东西。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"jquery"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">doStuff</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line"><span class="built_in">module</span> <span class="string">"localModule"</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>容易进行静态分析</li>
+<li>面向未来的 EcmaScript 标准</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>原生浏览器端还没有实现该标准</li>
+<li>全新的命令字，新版的 Node.js才支持</li>
+</ul>
+<p>实现：</p>
+<ul>
+<li><a href="https://babeljs.io/" target="_blank" rel="external">Babel</a></li>
+</ul>
+<h3 id="期望的模块系统"><a href="#期望的模块系统" class="headerlink" title="期望的模块系统"></a>期望的模块系统</h3><p>可以兼容多种模块风格，尽量可以利用已有的代码，不仅仅只是 JavaScript 模块化，还有 CSS、图片、字体等资源也需要模块化。</p>
+<h1 id="前端模块加载"><a href="#前端模块加载" class="headerlink" title="前端模块加载"></a>前端模块加载</h1><p>前端模块要在客户端中执行，所以他们需要增量加载到浏览器中。</p>
+<p>模块的加载和传输，我们首先能想到两种极端的方式，一种是每个模块文件都单独请求，另一种是把所有模块打包成一个文件然后只请求一次。显而易见，每个模块都发起单独的请求造成了请求次数过多，导致应用启动速度慢；一次请求加载所有模块导致流量浪费、初始化过程慢。这两种方式都不是好的解决方案，它们过于简单粗暴。</p>
+<p><strong>分块传输</strong>，按需进行懒加载，在实际用到某些模块的时候再增量更新，才是较为合理的模块加载方案。</p>
+<p>要实现模块的按需加载，就需要一个对整个代码库中的模块进行静态分析、编译打包的过程。</p>
+<h1 id="所有资源都是模块"><a href="#所有资源都是模块" class="headerlink" title="所有资源都是模块"></a>所有资源都是模块</h1><p>在上面的分析过程中，我们提到的模块仅仅是指JavaScript模块文件。然而，在前端开发过程中还涉及到样式、图片、字体、HTML 模板等等众多的资源。这些资源还会以各种方言的形式存在，比如 coffeescript、 less、 sass、众多的模板库、多语言系统（i18n）等等。</p>
+<p>如果他们都可以视作模块，并且都可以通过<code>require</code>的方式来加载，将带来优雅的开发体验，比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">"./style.css"</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"./style.less"</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"./template.jade"</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">"./image.png"</span>);</span><br></pre></td></tr></table></figure>
+<p>那么如何做到让 <code>require</code> 能加载各种资源呢？</p>
+<h1 id="静态分析"><a href="#静态分析" class="headerlink" title="静态分析"></a>静态分析</h1><p>在编译的时候，要对整个代码进行静态分析，分析出各个模块的类型和它们依赖关系，然后将不同类型的模块提交给适配的加载器来处理。比如一个用 LESS 写的样式模块，可以先用 LESS 加载器将它转成一个CSS 模块，在通过 CSS 模块把他插入到页面的 <code>&lt;style&gt;</code> 标签中执行。Webpack 就是在这样的需求中应运而生。</p>
+<p>同时，为了能利用已经存在的各种框架、库和已经写好的文件，我们还需要一个模块加载的兼容策略，来避免重写所有的模块。</p>
+<p>那么接下来，让我们开始 Webpack 的神奇之旅吧。</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模块化/" rel="tag">#模块化</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/javascript-recurring-cycle/" rel="next" title="JavaScript 计算循环节">
+                <i class="fa fa-chevron-left"></i> JavaScript 计算循环节
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/angular-essential/" rel="prev" title="Angular 基础入门">
+                Angular 基础入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="modulariztion-introduction/"
+           data-title="模块化简介" data-url="http://blog.micua.com/modulariztion-introduction/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://files.wedn.net/img/logo.png"
+               alt="iceStone" />
+          <p class="site-author-name" itemprop="name">iceStone</p>
+          <p class="site-description motion-element" itemprop="description">汪磊的个人博客,专注互联网开发,程序设计,前端开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Micua/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/micua/" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#现状"><span class="nav-number">1.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块系统的演进"><span class="nav-number">2.</span> <span class="nav-text">模块系统的演进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lt-script-gt-标签"><span class="nav-number">2.0.1.</span> <span class="nav-text"><script>标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS"><span class="nav-number">2.0.2.</span> <span class="nav-text">CommonJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMD"><span class="nav-number">2.0.3.</span> <span class="nav-text">AMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMD"><span class="nav-number">2.0.4.</span> <span class="nav-text">CMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UMD"><span class="nav-number">2.0.5.</span> <span class="nav-text">UMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6-模块"><span class="nav-number">2.0.6.</span> <span class="nav-text">ES6 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#期望的模块系统"><span class="nav-number">2.0.7.</span> <span class="nav-text">期望的模块系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前端模块加载"><span class="nav-number">3.</span> <span class="nav-text">前端模块加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#所有资源都是模块"><span class="nav-number">4.</span> <span class="nav-text">所有资源都是模块</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静态分析"><span class="nav-number">5.</span> <span class="nav-text">静态分析</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iceStone</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"micua"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>

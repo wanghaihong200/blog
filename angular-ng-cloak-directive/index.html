@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Angular," />
 
 
 
@@ -80,19 +80,25 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="description" content="问题表达式的使用在AngularJS应用开发过程中经常遇到，其作用就是输出一个值到HTML的指定位置，例如：
+1&amp;lt;strong&amp;gt;&amp;#123;&amp;#123;todos.length&amp;#125;&amp;#125;&amp;lt;/strong&amp;gt;
+效果就是将todos.length的值输出到&amp;lt;strong&amp;gt;&amp;lt;/strong&amp;gt;标签中，同时可以完成自动化的数据同步，十分方便。
+但是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://blog.micua.com/hello-world/index.html">
+<meta property="og:title" content="通过ng-cloak指令解决Angular表达式闪烁问题">
+<meta property="og:url" content="http://blog.micua.com/angular-ng-cloak-directive/index.html">
 <meta property="og:site_name" content="斯通摇滚吧！">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
-<meta property="og:updated_time" content="2016-03-20T07:08:51.000Z">
+<meta property="og:description" content="问题表达式的使用在AngularJS应用开发过程中经常遇到，其作用就是输出一个值到HTML的指定位置，例如：
+1&amp;lt;strong&amp;gt;&amp;#123;&amp;#123;todos.length&amp;#125;&amp;#125;&amp;lt;/strong&amp;gt;
+效果就是将todos.length的值输出到&amp;lt;strong&amp;gt;&amp;lt;/strong&amp;gt;标签中，同时可以完成自动化的数据同步，十分方便。
+但是">
+<meta property="og:updated_time" content="2016-05-02T08:31:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick">
+<meta name="twitter:title" content="通过ng-cloak指令解决Angular表达式闪烁问题">
+<meta name="twitter:description" content="问题表达式的使用在AngularJS应用开发过程中经常遇到，其作用就是输出一个值到HTML的指定位置，例如：
+1&amp;lt;strong&amp;gt;&amp;#123;&amp;#123;todos.length&amp;#125;&amp;#125;&amp;lt;/strong&amp;gt;
+效果就是将todos.length的值输出到&amp;lt;strong&amp;gt;&amp;lt;/strong&amp;gt;标签中，同时可以完成自动化的数据同步，十分方便。
+但是">
 
 
 
@@ -110,7 +116,7 @@ Quick">
   };
 </script>
 
-  <title> Hello World | 斯通摇滚吧！ </title>
+  <title> 通过ng-cloak指令解决Angular表达式闪烁问题 | 斯通摇滚吧！ </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +246,7 @@ Quick">
             
             
               
-                Hello World
+                通过ng-cloak指令解决Angular表达式闪烁问题
               
             
           </h1>
@@ -252,8 +258,8 @@ Quick">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-20T15:08:51+08:00" content="2016-03-20">
-              2016-03-20
+            <time itemprop="dateCreated" datetime="2016-05-02T16:19:53+08:00" content="2016-05-02">
+              2016-05-02
             </time>
           </span>
 
@@ -263,8 +269,8 @@ Quick">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="hello-world/" itemprop="commentsCount"></span>
+                <a href="/angular-ng-cloak-directive/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="angular-ng-cloak-directive/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -287,15 +293,20 @@ Quick">
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>表达式的使用在AngularJS应用开发过程中经常遇到，其作用就是输出一个值到HTML的指定位置，例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123;todos.length&#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>效果就是将<code>todos.length</code>的值输出到<code>&lt;strong&gt;&lt;/strong&gt;</code>标签中，同时可以完成自动化的数据同步，十分方便。</p>
+<p>但是方便的背后也是有一些问题的，这个功能类似于一些服务端的模板引擎，比如Handlebars、xTemplate中都有这种表达式的功能，可是AngularJS始终还是一个JavaScript的框架，是JS框架，就必须在浏览器中执行。</p>
+<p>JavaScript的执行需要时间的，在这个时间内，浏览器任然会将这个标记作为普通的内容渲染到界面上，当JS执行完成则会将这个标记替换为对应的内容。</p>
+<p>在这个过程中会出现从标记转换为真实数据的跳跃，而且为了体验也不应该将标记显示到界面上，那么怎么办？</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="1-使用ng-bind指令替换表达式："><a href="#1-使用ng-bind指令替换表达式：" class="headerlink" title="1. 使用ng-bind指令替换表达式："></a>1. 使用ng-bind指令替换表达式：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">strong</span> <span class="attr">ng-bind</span>=<span class="string">"todos.length"</span>&gt;</span><span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用这种方式就不会再界面上显示表达式的内容，html对不认识的属性采取不予理睬的态度，所以没有什么影响</p>
+<h4 id="2-使用ng-cloak指令："><a href="#2-使用ng-cloak指令：" class="headerlink" title="2. 使用ng-cloak指令："></a>2. 使用ng-cloak指令：</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-cloak</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">strong</span>&gt;</span>&#123;&#123;todos.length&#125;&#125;<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>原因是angularjs源码最后添加该样式隐藏：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.angular.element(<span class="built_in">document</span>).find(<span class="string">"head"</span>)</span><br><span class="line">  .prepend(<span class="string">'&lt;style type="text/css"&gt;@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide&#123;display:none !important;&#125;'</span>);</span><br></pre></td></tr></table></figure>
+<p>在所有使用表达式的容器上添加ng-cloak的属性或者添加ng-cloak的类，这样就可以解决这个问题了，因为ng-cloak指令功能就是在AngularJS任务执行完成以后，自动去除当前元素的ng-cloak的属性或者ng-cloak的类，利用这个特点可以解决以上的问题，不过测试表明需要我们自己手动添加一个隐藏ng-cloak元素的样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[ng-cloak]</span>,</span><br><span class="line"><span class="selector-class">.ng-cloak</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>:none <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>原因很简单，这个样式默认是angularjs添加的，但是此时元素大多数情况下已经渲染完成了，所以丧失了意义。</p>
 
       
     </div>
@@ -314,17 +325,27 @@ Quick">
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag">#Angular</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/chrome-file-protocol-support-ajax/" rel="next" title="配置Chrome支持本地（file协议）的AJAX请求">
+                <i class="fa fa-chevron-left"></i> 配置Chrome支持本地（file协议）的AJAX请求
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/angular-nav-auto-active/" rel="prev" title="Angular实现导航自动切换状态">
-                Angular实现导航自动切换状态 <i class="fa fa-chevron-right"></i>
+              <a href="/taobao-mirrors-rubygems/" rel="prev" title="淘宝提供Rubygems国内镜像站点">
+                淘宝提供Rubygems国内镜像站点 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -351,8 +372,8 @@ Quick">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="hello-world/"
-           data-title="Hello World" data-url="http://blog.micua.com/hello-world/">
+      <div class="ds-thread" data-thread-key="angular-ng-cloak-directive/"
+           data-title="通过ng-cloak指令解决Angular表达式闪烁问题" data-url="http://blog.micua.com/angular-ng-cloak-directive/">
       </div>
     
   </div>
@@ -456,7 +477,7 @@ Quick">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-使用ng-bind指令替换表达式："><span class="nav-number">2.1.</span> <span class="nav-text">1. 使用ng-bind指令替换表达式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-使用ng-cloak指令："><span class="nav-number">2.2.</span> <span class="nav-text">2. 使用ng-cloak指令：</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

@@ -1,0 +1,835 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Angular," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="简介什么是AngularJS
+一个功能非常完备的前端框架，通过增强HTML的方式提供一种便捷开发Web应用程序的方式
+其核心特点就是几乎无任何DOM操作，让开发人员的精力和时间全部集中于业务
+MVC的特性增强了代码的结构和可维护性，应对需求的变化做出最小的改动
+
+为什么使用AngularJS
+更少的代码实现更强劲的功能
+提供了很多在传统后端开发中大量使用的思想和方式，提高前台代码的结构和可维护性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular 基础入门">
+<meta property="og:url" content="http://blog.micua.com/angular-essential/index.html">
+<meta property="og:site_name" content="斯通摇滚吧！">
+<meta property="og:description" content="简介什么是AngularJS
+一个功能非常完备的前端框架，通过增强HTML的方式提供一种便捷开发Web应用程序的方式
+其核心特点就是几乎无任何DOM操作，让开发人员的精力和时间全部集中于业务
+MVC的特性增强了代码的结构和可维护性，应对需求的变化做出最小的改动
+
+为什么使用AngularJS
+更少的代码实现更强劲的功能
+提供了很多在传统后端开发中大量使用的思想和方式，提高前台代码的结构和可维护性">
+<meta property="og:image" content="http://files.wedn.net/2016/03/mvc-1458840221606.png">
+<meta property="og:image" content="http://files.wedn.net/2016/03/scope-1458840236999.png">
+<meta property="og:image" content="http://files.wedn.net/2016/03/view-model-1458840241292.png">
+<meta property="og:updated_time" content="2016-05-02T08:28:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular 基础入门">
+<meta name="twitter:description" content="简介什么是AngularJS
+一个功能非常完备的前端框架，通过增强HTML的方式提供一种便捷开发Web应用程序的方式
+其核心特点就是几乎无任何DOM操作，让开发人员的精力和时间全部集中于业务
+MVC的特性增强了代码的结构和可维护性，应对需求的变化做出最小的改动
+
+为什么使用AngularJS
+更少的代码实现更强劲的功能
+提供了很多在传统后端开发中大量使用的思想和方式，提高前台代码的结构和可维护性">
+<meta name="twitter:image" content="http://files.wedn.net/2016/03/mvc-1458840221606.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Angular 基础入门 | 斯通摇滚吧！ </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?87e13ef9217ab0f2c37aea890c7aec20";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">斯通摇滚吧！</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">汪磊的个人博客</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Angular 基础入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-02T16:22:14+08:00" content="2016-05-02">
+              2016-05-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/angular-essential/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="angular-essential/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="什么是AngularJS"><a href="#什么是AngularJS" class="headerlink" title="什么是AngularJS"></a>什么是AngularJS</h3><ul>
+<li>一个功能非常完备的前端框架，通过增强HTML的方式提供一种便捷开发Web应用程序的方式</li>
+<li>其核心特点就是几乎无任何DOM操作，让开发人员的精力和时间全部集中于业务</li>
+<li>MVC的特性增强了代码的结构和可维护性，应对需求的变化做出最小的改动</li>
+</ul>
+<h3 id="为什么使用AngularJS"><a href="#为什么使用AngularJS" class="headerlink" title="为什么使用AngularJS"></a>为什么使用AngularJS</h3><ul>
+<li>更少的代码实现更强劲的功能</li>
+<li>提供了很多在传统后端开发中大量使用的思想和方式，提高前台代码的结构和可维护性</li>
+</ul>
+<h3 id="使用AnuglarJS的流程"><a href="#使用AnuglarJS的流程" class="headerlink" title="使用AnuglarJS的流程"></a>使用AnuglarJS的流程</h3><ol>
+<li>在HTML中引入Angular.js文件</li>
+<li>在自己的代码中定义一个AngularJS的模块</li>
+<li>将模块作用到HTML中的某个节点</li>
+<li>根据模块的功能定义控制器</li>
+<li>根据当前页面原型设计$scope的结构</li>
+<li>通过$scope暴露数据和行为</li>
+<li>将暴露出来的数据和行为通过特定的指令绑定到HTML节点中</li>
+</ol>
+<h3 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h3><ul>
+<li>一种应用程序的设计思想，其目的是为了对应用程序的组成进行划分，让结构更加清晰可维护性更高，确保每个原件都有明确的单一职责</li>
+</ul>
+<p><img src="http://files.wedn.net/2016/03/mvc-1458840221606.png" alt="MVC"></p>
+<!-- ======================================================================= -->
+<hr>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><blockquote>
+<ul>
+<li>可以通过<code>angular.module()</code>方法操作模块</li>
+<li><em>注意：该方法只有在传入两个参数时才会创建模块，否则为获取已有模块</em></li>
+</ul>
+</blockquote>
+<h3 id="定义模块"><a href="#定义模块" class="headerlink" title="定义模块"></a>定义模块</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 第一个参数为模块名，第二个参数为当前这个模块所依赖的模块列表</span></span><br><span class="line">angular.module(<span class="string">'ModuleName'</span>, []);</span><br></pre></td></tr></table></figure>
+<h3 id="获取已经定义过的模块"><a href="#获取已经定义过的模块" class="headerlink" title="获取已经定义过的模块"></a>获取已经定义过的模块</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> existModule = angular.module(<span class="string">'ExistModule'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="如何划分模块"><a href="#如何划分模块" class="headerlink" title="如何划分模块"></a>如何划分模块</h3><h4 id="1-根据当前需要开发的应用程序的组成划分需要多少模块，"><a href="#1-根据当前需要开发的应用程序的组成划分需要多少模块，" class="headerlink" title="1.根据当前需要开发的应用程序的组成划分需要多少模块，"></a>1.根据当前需要开发的应用程序的组成划分需要多少模块，</h4><p>比如：</p>
+<ul>
+<li>注册模块</li>
+<li>登录模块</li>
+<li>用户列表页模块</li>
+<li>用户详细页模块</li>
+<li>etc.</li>
+</ul>
+<h4 id="2-根据文件类型的不同来划分"><a href="#2-根据文件类型的不同来划分" class="headerlink" title="2. 根据文件类型的不同来划分"></a>2. 根据文件类型的不同来划分</h4><p>比如：</p>
+<ul>
+<li>所有的控制器</li>
+<li>所有的服务</li>
+<li>所有的指令</li>
+<li>etc.</li>
+</ul>
+<!-- ======================================================================= -->
+<hr>
+<h2 id="控制器"><a href="#控制器" class="headerlink" title="控制器"></a>控制器</h2><blockquote>
+<p>当下的企业开发，如果使用Angular，主要就是开发对应的控制器和模型</p>
+</blockquote>
+<h3 id="定义控制器"><a href="#定义控制器" class="headerlink" title="定义控制器"></a>定义控制器</h3><p>定义控制器可以有三种方式，注意第一种已经被淘汰</p>
+<h4 id="传统方式（不要再用了）"><a href="#传统方式（不要再用了）" class="headerlink" title="传统方式（不要再用了）"></a>传统方式（不要再用了）</h4><p>在最早期的 Angular 代码中可能会见到以全局函数的方式定义的控制器：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>早期的控制器定义方式-全局函数<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"FooController"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"clicked me!"</span> <span class="attr">ng-click</span>=<span class="string">"say()"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FooController</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">  $scope.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'hello angular'</span>);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式现在已经不被支持，就算没有淘汰也不应该使用，太low（全局作用域的问题）</p>
+<h4 id="常用方式（挂载在某个模块下）（必须掌握）"><a href="#常用方式（挂载在某个模块下）（必须掌握）" class="headerlink" title="常用方式（挂载在某个模块下）（必须掌握）"></a>常用方式（挂载在某个模块下）（必须掌握）</h4><p>Angular中最常见的一种使用方式，通过模块中定义的<code>controller</code>方法定义控制器</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>常用方式（挂载在某个模块下）<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>=<span class="string">"MyModule"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"FooController"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"clicked me!"</span> <span class="attr">ng-click</span>=<span class="string">"say()"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'MyModule'</span>, [])</span><br><span class="line">  .controller(<span class="string">'FooController'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">$scope</span>) </span>&#123;</span><br><span class="line">    $scope.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'hello angular'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="定义类型的方式（构造函数）"><a href="#定义类型的方式（构造函数）" class="headerlink" title="定义类型的方式（构造函数）"></a>定义类型的方式（构造函数）</h4><p>对于喜欢通过定义构造函数的方式编写面向对象代码的同学可以使用构造函数的形式定义一个控制器</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>面向对象的方式<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">ng-app</span>=<span class="string">"MyModule"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-controller</span>=<span class="string">"FooController as context"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"clicked me!"</span> <span class="attr">ng-click</span>=<span class="string">"context.say()"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FooController</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.message = <span class="string">'hello angular'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FooController.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.message);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">angular.module(<span class="string">'MyModule'</span>, [])</span><br><span class="line">  .controller(<span class="string">'FooController'</span>, FooController);</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>在以上的使用方式中，如果需要为控制器函数注入类似<code>$scope</code>之类的参数，必须确保参数名为一个特定值</li>
+<li>也就是说Angular会根据参数名称自动注入对应的对象（与参数个数，出现顺序无关），所以参数名一定不能写错</li>
+<li>但是，我们对于写完的JS代码经常会在上线之前对代码进行压缩</li>
+<li>压缩的过程中如果启用混淆压缩的话，就会造成参数名变化</li>
+<li>一旦变化了参数名，NG就无法为其注入对应的对象了</li>
+<li><code>所以，最安全的写法就是不要依赖参数名（依赖不会变化的东西）：</code></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'MyModule'</span>, [])</span><br><span class="line">  .controller(<span class="string">'FooController'</span>, [<span class="string">'$scope'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">whatever</span>) </span>&#123;</span><br><span class="line">    whatever.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'hello angular'</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;]);</span><br></pre></td></tr></table></figure>
+<p>解决方式就是将创建控制器的第二个参数改为一个数组，数组的最后一个成员就是以前的控制器函数，前面的成员就是控制器函数需要注入的对象列表，按照顺序对应</p>
+<h4 id="扩展小知识：实现原理"><a href="#扩展小知识：实现原理" class="headerlink" title="扩展小知识：实现原理"></a>扩展小知识：实现原理</h4><p>如何根据参数名传入特定对象？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getFnParams</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> fn == <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> mathes = <span class="regexp">/.+\((.+)\)/</span>.exec(<span class="built_in">Function</span>.prototype.toString.call(fn));</span><br><span class="line">    <span class="keyword">if</span> (mathes[<span class="number">1</span>]) &#123;</span><br><span class="line">      <span class="keyword">var</span> args = mathes[<span class="number">1</span>].replace(<span class="regexp">/\s/g</span>, <span class="string">''</span>).split(<span class="string">','</span>);</span><br><span class="line">      <span class="keyword">return</span> args;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">id, name, a1ge</span>) </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getFnParams(foo));</span><br></pre></td></tr></table></figure>
+<!-- ======================================================================= -->
+<hr>
+<h2 id="scope"><a href="#scope" class="headerlink" title="$scope"></a>$scope</h2><ul>
+<li>视图和控制器之间的数据桥梁</li>
+<li>用于在视图和控制器之间传递数据</li>
+<li>用来暴露数据模型（数据，行为）</li>
+</ul>
+<p><img src="http://files.wedn.net/2016/03/scope-1458840236999.png" alt="$scope"></p>
+<h3 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h3><ul>
+<li>$scope 实际上就是MVVM中所谓的VM（视图模型）</li>
+<li>正是因为$scope在Angular中大量使用甚至盖过了C（控制器）的概念，所以很多人（包括我）把Angular称之为MVVM框架</li>
+<li>这一点倒是无所谓，具体看怎么用罢了</li>
+</ul>
+<p>大家必须掌握的就是如何根据一个原型抽象出对应的视图模型</p>
+<p><img src="http://files.wedn.net/2016/03/view-model-1458840241292.png" alt="抽象ViewModel"></p>
+<!-- ======================================================================= -->
+<hr>
+<h2 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h2><p>类似于模版引擎的语法</p>
+<h3 id="作用："><a href="#作用：" class="headerlink" title="作用："></a>作用：</h3><p>使用表达式把数据绑定到 HTML。</p>
+<h3 id="语法："><a href="#语法：" class="headerlink" title="语法："></a>语法：</h3><ul>
+<li>表达式写在双大括号内：。</li>
+<li>AngularJS 表达式很像 JavaScript 表达式</li>
+<li>它们可以包含文字、运算符和变量</li>
+<li>如 10 或 undefined-undefined</li>
+</ul>
+<h3 id="支持的类型"><a href="#支持的类型" class="headerlink" title="支持的类型"></a>支持的类型</h3><ul>
+<li>数字  200</li>
+<li>字符串 helloangular</li>
+<li>对象  </li>
+<li>数组  </li>
+</ul>
+<h3 id="与JS的比较："><a href="#与JS的比较：" class="headerlink" title="与JS的比较："></a>与JS的比较：</h3><p>相同点：</p>
+<ul>
+<li>AngularJS 表达式可以包含字母，操作符，变量。</li>
+</ul>
+<p>不同点：</p>
+<ul>
+<li>AngularJS 表达式可以写在 HTML 中。</li>
+<li>AngularJS 表达式不支持条件判断，循环及异常。</li>
+<li>AngularJS 表达式支持过滤器。</li>
+</ul>
+<!-- ======================================================================= -->
+<hr>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><ul>
+<li>在 AngularJS 中将前缀为 ng- 这种属性称之为指令，其作用就是为 DOM 元素调用方法、定义行为绑定数据等</li>
+<li>简单说：当一个 Angular 应用启动，Angular 就会遍历 DOM 树来解析 HTML，根据指令不同，完成不同操作</li>
+</ul>
+<h3 id="指令标准属性的问题"><a href="#指令标准属性的问题" class="headerlink" title="指令标准属性的问题"></a>指令标准属性的问题</h3><ul>
+<li>ng-xxx 的属性本身并不是标准中定义的属性</li>
+<li>很多情况下语法校验是无法通过的</li>
+<li>HTML5 允许扩展的（自制的）属性，以 data- 开头。</li>
+<li>在 AngularJS 中可以使用 data-ng- 来让网页对 HTML5 有效。</li>
+<li>二者效果相同。</li>
+</ul>
+<h3 id="内置指令"><a href="#内置指令" class="headerlink" title="内置指令"></a>内置指令</h3><h4 id="ng-app"><a href="#ng-app" class="headerlink" title="ng-app"></a>ng-app</h4><ul>
+<li>ng-app 指令用来标明一个 AngularJS 应用程序</li>
+<li>标记在一个 AngularJS 的作用范围的根对象上</li>
+<li>系统执行时会自动的执行根对象范围内的其他指令</li>
+<li>可以在同一个页面创建多个 ng-app 节点（不推荐）</li>
+<li>创建多个ng-app时，默认只能执行第一个，后面的需要手动引导：angular.bootstrap()</li>
+<li>标记的范围尽可能小，性能</li>
+</ul>
+<h4 id="ng-model"><a href="#ng-model" class="headerlink" title="ng-model"></a>ng-model</h4><ul>
+<li>用于建立界面上的元素到数据模型属性的双向数据绑定</li>
+<li>一般情况绑定到元素的value属性上</li>
+<li>但是在checkbox之类的表单元素会有不同</li>
+</ul>
+<h4 id="ng-bind"><a href="#ng-bind" class="headerlink" title="ng-bind"></a>ng-bind</h4><h4 id="ng-bind-html"><a href="#ng-bind-html" class="headerlink" title="ng-bind-html"></a>ng-bind-html</h4><h4 id="ng-repeat"><a href="#ng-repeat" class="headerlink" title="ng-repeat"></a>ng-repeat</h4><h4 id="ng-class"><a href="#ng-class" class="headerlink" title="ng-class"></a>ng-class</h4><h4 id="ng-cloak"><a href="#ng-cloak" class="headerlink" title="ng-cloak"></a>ng-cloak</h4><h4 id="ng-show-ng-hide-ng-if"><a href="#ng-show-ng-hide-ng-if" class="headerlink" title="ng-show/ng-hide/ng-if"></a>ng-show/ng-hide/ng-if</h4><h4 id="ng-src"><a href="#ng-src" class="headerlink" title="ng-src"></a>ng-src</h4><h4 id="ng-switch"><a href="#ng-switch" class="headerlink" title="ng-switch"></a>ng-switch</h4><h4 id="其他常用指令"><a href="#其他常用指令" class="headerlink" title="其他常用指令"></a>其他常用指令</h4><ul>
+<li>ng-checked：<ul>
+<li>单选/复选是否选中，只是单向绑定数据</li>
+</ul>
+</li>
+<li>ng-selected：<ul>
+<li>是否选中，只是单向绑定数据</li>
+</ul>
+</li>
+<li>ng-disabled：<ul>
+<li>是否禁用</li>
+</ul>
+</li>
+<li>ng-readonly：<ul>
+<li>是否只读</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用事件指令"><a href="#常用事件指令" class="headerlink" title="常用事件指令"></a>常用事件指令</h3><p>不同于以上的功能性指令，Angular还定义了一些用于和事件绑定的指令：</p>
+<ul>
+<li>ng-blur：<ul>
+<li>失去焦点</li>
+</ul>
+</li>
+<li>ng-change：<ul>
+<li>发生改变</li>
+</ul>
+</li>
+<li>ng-copy：<ul>
+<li>拷贝完成</li>
+</ul>
+</li>
+<li>ng-click：<ul>
+<li>单击</li>
+</ul>
+</li>
+<li>ng-dblclick：<ul>
+<li>双击</li>
+</ul>
+</li>
+<li>ng-focus：<ul>
+<li>得到焦点</li>
+</ul>
+</li>
+<li>ng-blur：<ul>
+<li>失去焦点</li>
+</ul>
+</li>
+<li>ng-submit：<ul>
+<li>表单提交</li>
+</ul>
+</li>
+</ul>
+<h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><ul>
+<li>指令无外乎增强了 HTML，提供额外的功能</li>
+<li>以上的指令基本上已经可以满足我们的绝大多数需要了</li>
+<li>少数情况下我们有一些特殊的需要，可以通过自定义指令的方式实现：</li>
+</ul>
+<h4 id="组件式指令Demo"><a href="#组件式指令Demo" class="headerlink" title="组件式指令Demo"></a>组件式指令Demo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">myModule.directive(<span class="string">'hello'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    restrict: <span class="string">'E'</span>,</span><br><span class="line">    template: <span class="string">'&lt;h1&gt;Hello world&lt;/h1&gt;'</span>,</span><br><span class="line">    replace: <span class="literal">true</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="功能型指令Demo"><a href="#功能型指令Demo" class="headerlink" title="功能型指令Demo"></a>功能型指令Demo</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">myApp.directive(<span class="string">"ngHover"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">scope, element, attrs</span>) </span>&#123;</span><br><span class="line">    element.bind(<span class="string">"mouseenter"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      element.css(<span class="string">"background"</span>, <span class="string">"yellow"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    element.bind(<span class="string">"mouseleave"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      element.css(<span class="string">"background"</span>, <span class="string">"none"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="自定义指令的类型"><a href="#自定义指令的类型" class="headerlink" title="自定义指令的类型"></a>自定义指令的类型</h4><ol>
+<li>E：Element（元素）</li>
+<li>A：Attribute（属性）</li>
+<li>C：Class（类名）</li>
+<li>M：Comment（注释）</li>
+</ol>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><p>在定义指令应该使用驼峰命名法，使用指令时应该使用的是全小写字母中划线分割的方式</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Angular/" rel="tag">#Angular</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/modulariztion-introduction/" rel="next" title="模块化简介">
+                <i class="fa fa-chevron-left"></i> 模块化简介
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="angular-essential/"
+           data-title="Angular 基础入门" data-url="http://blog.micua.com/angular-essential/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://files.wedn.net/img/logo.png"
+               alt="iceStone" />
+          <p class="site-author-name" itemprop="name">iceStone</p>
+          <p class="site-description motion-element" itemprop="description">汪磊的个人博客,专注互联网开发,程序设计,前端开发</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Micua/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/micua/" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是AngularJS"><span class="nav-number">1.1.</span> <span class="nav-text">什么是AngularJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用AngularJS"><span class="nav-number">1.2.</span> <span class="nav-text">为什么使用AngularJS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用AnuglarJS的流程"><span class="nav-number">1.3.</span> <span class="nav-text">使用AnuglarJS的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC"><span class="nav-number">1.4.</span> <span class="nav-text">MVC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">2.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模块"><span class="nav-number">2.1.</span> <span class="nav-text">定义模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取已经定义过的模块"><span class="nav-number">2.2.</span> <span class="nav-text">获取已经定义过的模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何划分模块"><span class="nav-number">2.3.</span> <span class="nav-text">如何划分模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-根据当前需要开发的应用程序的组成划分需要多少模块，"><span class="nav-number">2.3.1.</span> <span class="nav-text">1.根据当前需要开发的应用程序的组成划分需要多少模块，</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-根据文件类型的不同来划分"><span class="nav-number">2.3.2.</span> <span class="nav-text">2. 根据文件类型的不同来划分</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制器"><span class="nav-number">3.</span> <span class="nav-text">控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义控制器"><span class="nav-number">3.1.</span> <span class="nav-text">定义控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#传统方式（不要再用了）"><span class="nav-number">3.1.1.</span> <span class="nav-text">传统方式（不要再用了）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用方式（挂载在某个模块下）（必须掌握）"><span class="nav-number">3.1.2.</span> <span class="nav-text">常用方式（挂载在某个模块下）（必须掌握）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#定义类型的方式（构造函数）"><span class="nav-number">3.1.3.</span> <span class="nav-text">定义类型的方式（构造函数）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">3.2.</span> <span class="nav-text">注意事项</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展小知识：实现原理"><span class="nav-number">3.2.1.</span> <span class="nav-text">扩展小知识：实现原理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scope"><span class="nav-number">4.</span> <span class="nav-text">$scope</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ViewModel"><span class="nav-number">4.1.</span> <span class="nav-text">ViewModel</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表达式"><span class="nav-number">5.</span> <span class="nav-text">表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用："><span class="nav-number">5.1.</span> <span class="nav-text">作用：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法："><span class="nav-number">5.2.</span> <span class="nav-text">语法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支持的类型"><span class="nav-number">5.3.</span> <span class="nav-text">支持的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与JS的比较："><span class="nav-number">5.4.</span> <span class="nav-text">与JS的比较：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指令"><span class="nav-number">6.</span> <span class="nav-text">指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令标准属性的问题"><span class="nav-number">6.1.</span> <span class="nav-text">指令标准属性的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内置指令"><span class="nav-number">6.2.</span> <span class="nav-text">内置指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-app"><span class="nav-number">6.2.1.</span> <span class="nav-text">ng-app</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-model"><span class="nav-number">6.2.2.</span> <span class="nav-text">ng-model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-bind"><span class="nav-number">6.2.3.</span> <span class="nav-text">ng-bind</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-bind-html"><span class="nav-number">6.2.4.</span> <span class="nav-text">ng-bind-html</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-repeat"><span class="nav-number">6.2.5.</span> <span class="nav-text">ng-repeat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-class"><span class="nav-number">6.2.6.</span> <span class="nav-text">ng-class</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-cloak"><span class="nav-number">6.2.7.</span> <span class="nav-text">ng-cloak</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-show-ng-hide-ng-if"><span class="nav-number">6.2.8.</span> <span class="nav-text">ng-show/ng-hide/ng-if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-src"><span class="nav-number">6.2.9.</span> <span class="nav-text">ng-src</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ng-switch"><span class="nav-number">6.2.10.</span> <span class="nav-text">ng-switch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他常用指令"><span class="nav-number">6.2.11.</span> <span class="nav-text">其他常用指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用事件指令"><span class="nav-number">6.3.</span> <span class="nav-text">常用事件指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义指令"><span class="nav-number">6.4.</span> <span class="nav-text">自定义指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组件式指令Demo"><span class="nav-number">6.4.1.</span> <span class="nav-text">组件式指令Demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能型指令Demo"><span class="nav-number">6.4.2.</span> <span class="nav-text">功能型指令Demo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义指令的类型"><span class="nav-number">6.4.3.</span> <span class="nav-text">自定义指令的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意："><span class="nav-number">6.4.4.</span> <span class="nav-text">注意：</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iceStone</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"micua"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
