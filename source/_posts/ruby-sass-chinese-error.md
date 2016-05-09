@@ -1,5 +1,5 @@
 ---
-title: Ruby环境Sass编译中文出现'Syntax error: Invalid GBK character'错误解决方法
+title: Ruby环境Sass编译中文出现'Invalid GBK character'错误解决方法
 date: 2016-05-02 16:20:34
 tags:
   Ruby
